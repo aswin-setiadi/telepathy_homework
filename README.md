@@ -19,7 +19,7 @@
 
 ### How to Run
 
-- To play with the application, change question1-1.py and run with ```$python question1-1.py```
+- To play with the application, change question1-1.py as needed and run with ```$python question1-1.py```
 
 ## Question 1-2
 
@@ -43,3 +43,6 @@ Each room should be visited only once (helped and tracked by **visited_matrix**)
     - Else return -1
 8. Else update hotel matrix following **rooms_to_infect** list, reset the list, add **unit_time** by 1, and continue to next **unit_time** loop. 
 
+### How to Run
+
+- To play with the application, change question1-2.py as needed and run with ```$python question1-2.py```
