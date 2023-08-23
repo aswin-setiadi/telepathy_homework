@@ -1,5 +1,5 @@
-"""Main entry file for question 1a"""
-from typing import List, Union
+import logging
+from typing import List, Tuple, Union
 
 
 from main.exceptions import (
@@ -11,7 +11,12 @@ from main.exceptions import (
     RoomToBeRepair,
     RoomToBeVacant,
 )
-from main.global_vars import ROOM_STATUSES, HOTEL_COLUMNS
+from main.global_vars import DEBUGGING, ROOM_STATUSES, HOTEL_COLUMNS
+
+if DEBUGGING:
+    logging.basicConfig(level=logging.DEBUG)
+else:
+    logging.basicConfig(level=logging.INFO)
 
 
 class Hotel:
@@ -117,3 +122,69 @@ class Room:
             raise RoomToBeVacant()
         self._status = ROOM_STATUSES[2]
         return True
+
+
+class VirusMap:
+    def __init__(self, m: int, n: int, matrix: List[List[int]]) -> None:
+        self.m = m
+        self.n = n
+        self.matrix = matrix
+        self.unit_time = 0
+        self.healthy_guests: List[Tuple[int]] = []
+        self.rooms_to_infect: List[Tuple[int]] = []
+
+    def solve(self):
+        while True:
+            visited_matrix = [[False] * self.n for _ in range(self.m)]
+            logging.debug(self.matrix)
+            # input("pause")
+            for row in range(self.m):
+                for col in range(self.n):
+                    self._visit_room(row, col, visited_matrix)
+            logging.debug(self.rooms_to_infect)
+            logging.debug(self.healthy_guests)
+            if not self.rooms_to_infect:
+                if not self.healthy_guests:
+                    print(self.unit_time)
+                    break
+                else:
+                    print("-1")
+                    break
+            else:
+                for room in self.rooms_to_infect:
+                    self.matrix[room[0]][room[1]] = 2
+                    self.healthy_guests.remove((room[0], room[1]))
+                self.rooms_to_infect[:] = []
+                self.unit_time += 1
+            logging.debug("updating rooms_to_infect and healthy_guests list:")
+            logging.debug(self.rooms_to_infect)
+            logging.debug(self.healthy_guests)
+
+    def _visit_room(self, row, col, v_m, to_be_infected=False):
+        if to_be_infected and self.matrix[row][col] == 1:
+            if (row, col) not in self.rooms_to_infect:
+                self.rooms_to_infect.append((row, col))
+        if v_m[row][col]:
+            return
+        v_m[row][col] = True
+        if self.matrix[row][col] == 0:
+            return
+        if self.matrix[row][col] == 1:
+            if (row, col) not in self.healthy_guests:
+                self.healthy_guests.append((row, col))
+        if self.matrix[row][col] == 2:
+            neighbours = self._get_neighbours(row, col)
+            for neighbour in neighbours:
+                self._visit_room(neighbour[0], neighbour[1], v_m, True)
+
+    def _get_neighbours(self, row, col):
+        neighbours = []
+        if row != 0:
+            neighbours.append((row - 1, col))
+        if row != self.m - 1:
+            neighbours.append((row + 1, col))
+        if col != 0:
+            neighbours.append((row, col - 1))
+        if col != self.n - 1:
+            neighbours.append((row, col + 1))
+        return neighbours
