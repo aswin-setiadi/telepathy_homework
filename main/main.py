@@ -117,10 +117,3 @@ class Room:
             raise RoomToBeVacant()
         self._status = ROOM_STATUSES[2]
         return True
-
-
-if __name__ == "__main__":
-    hotel = Hotel(4)
-    print(hotel.list_available_rooms())
-    print(hotel.assign_room())
-    print(hotel.list_available_rooms())
