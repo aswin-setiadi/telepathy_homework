@@ -1,0 +1,4 @@
+[bandit]
+targets = main/
+recursive = true
+skips = B101

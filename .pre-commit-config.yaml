@@ -1,0 +1,44 @@
+repos:
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        stages: [commit]
+        language: system
+        entry: black
+        types: [python]
+      - id: mypy
+        name: mypy
+        stages: [commit]
+        language: system
+        entry: mypy
+        types: [python]
+        pass_filenames: false
+      - id: bandit
+        name: bandit
+        stages: [commit]
+        language: system
+        entry: bandit --ini .bandit -r
+        types: [python]
+        pass_filenames: false
+      - id: pytest
+        name: pytest
+        stages: [commit]
+        language: system
+        entry: pytest tests -ra
+        types: [python]
+        pass_filenames: false
+      - id: safety
+        name: safety
+        stages: [commit]
+        language: system
+        entry: safety check
+        types: [python]
+        pass_filenames: false
+      - id: coverage
+        name: coverage
+        stages: [push]
+        language: system
+        entry: coverage run
+        types: [python]
+        pass_filenames: false
