@@ -6,7 +6,9 @@ from main.exceptions import (
     FloorCountException,
     RoomCountException,
     RoomStatusException,
+    RoomToBeAvailable,
     RoomToBeOccupied,
+    RoomToBeRepair,
     RoomToBeVacant,
 )
 from main.global_vars import ROOM_STATUSES, HOTEL_COLUMNS
@@ -100,13 +102,13 @@ class Room:
 
     def clean(self) -> bool:
         if self._status != ROOM_STATUSES[2]:
-            raise RoomToBeVacant()
+            raise RoomToBeAvailable()
         self._status = ROOM_STATUSES[0]
         return True
 
     def repair(self) -> bool:
         if self._status != ROOM_STATUSES[2]:
-            raise RoomToBeVacant()
+            raise RoomToBeRepair()
         self._status = ROOM_STATUSES[3]
         return True
 
