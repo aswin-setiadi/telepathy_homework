@@ -130,10 +130,10 @@ class VirusMap:
         self.n = n
         self.matrix = matrix
         self.unit_time = 0
-        self.healthy_guests: List[Tuple[int]] = []
-        self.rooms_to_infect: List[Tuple[int]] = []
+        self.healthy_guests: List[Tuple[int, int]] = []
+        self.rooms_to_infect: List[Tuple[int, int]] = []
 
-    def solve(self):
+    def solve(self) -> str:
         while True:
             visited_matrix = [[False] * self.n for _ in range(self.m)]
             logging.debug(self.matrix)
@@ -145,11 +145,9 @@ class VirusMap:
             logging.debug(self.healthy_guests)
             if not self.rooms_to_infect:
                 if not self.healthy_guests:
-                    print(self.unit_time)
-                    break
+                    return f"{self.unit_time}"
                 else:
-                    print("-1")
-                    break
+                    return "-1"
             else:
                 for room in self.rooms_to_infect:
                     self.matrix[room[0]][room[1]] = 2
