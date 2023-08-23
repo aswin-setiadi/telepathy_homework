@@ -9,7 +9,7 @@ from main.exceptions import (
     RoomToBeVacant,
 )
 
-from main.main import Hotel, Room
+from main.main import Hotel, Room, VirusMap
 
 
 class TestHotel:
@@ -167,3 +167,35 @@ class TestRoom:
         assert room1.status == "Vacant"
         with pytest.raises(RoomToBeVacant):
             room2.repaired()
+
+
+class TestVirusMap:
+    def test_sample_question(self):
+        m = 3
+        n = 5
+        matrix = [[2, 1, 0, 2, 1], [1, 1, 1, 1, 1], [1, 0, 0, 2, 1]]
+        assert VirusMap(m, n, matrix).solve() == "2"
+
+    def test_no_infected(self):
+        m = 3
+        n = 5
+        matrix = [[1, 1, 0, 1, 1], [1, 1, 1, 1, 1], [1, 0, 0, 1, 1]]
+        assert VirusMap(m, n, matrix).solve() == "-1"
+
+    def test_isolated_infected(self):
+        m = 3
+        n = 5
+        matrix = [[2, 0, 0, 1, 1], [0, 1, 1, 1, 1], [1, 0, 0, 1, 1]]
+        assert VirusMap(m, n, matrix).solve() == "-1"
+
+    def test_isolated_uninfected(self):
+        m = 3
+        n = 5
+        matrix = [[1, 0, 0, 2, 1], [0, 1, 1, 1, 1], [1, 0, 0, 2, 1]]
+        assert VirusMap(m, n, matrix).solve() == "-1"
+
+    def test_all_infected(self):
+        m = 3
+        n = 5
+        matrix = [[2, 0, 0, 2, 2], [0, 2, 2, 2, 2], [2, 0, 0, 2, 2]]
+        assert VirusMap(m, n, matrix).solve() == "0"
