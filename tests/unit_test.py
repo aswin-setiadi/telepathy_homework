@@ -1,12 +1,13 @@
 import pytest
 from main.exceptions import (
+    CheckInException,
+    CheckOutException,
+    CleanException,
     FloorCountException,
+    RepairException,
+    RepairedException,
     RoomCountException,
     RoomStatusException,
-    RoomToBeAvailable,
-    RoomToBeOccupied,
-    RoomToBeRepair,
-    RoomToBeVacant,
 )
 
 from main.main import Hotel, Room, VirusMap
@@ -119,6 +120,15 @@ class TestHotel:
         assert hotel.list_available_rooms() == expected_list
         assert hotel2.list_available_rooms() == expected_list[1:]
 
+    def test_get_room(self):
+        hotel = Hotel(110)
+        nums = ["1", "01", "11", "111", "A", "AA", "1AA", "10F", "10AA", "111E"]
+        for num in nums:
+            assert hotel.get_room(num) is None
+        assert isinstance(hotel.get_room("1A"), Room)
+        assert isinstance(hotel.get_room("02B"), Room)
+        assert isinstance(hotel.get_room("110E"), Room)
+
 
 class TestRoom:
     def test_room_creation(self):
@@ -133,7 +143,7 @@ class TestRoom:
         room2 = Room("1B", "Occupied")
         assert room1.check_in()
         assert room1.status == "Occupied"
-        with pytest.raises(RoomToBeOccupied):
+        with pytest.raises(CheckInException):
             room2.check_in()
 
     def test_check_out(self):
@@ -141,7 +151,7 @@ class TestRoom:
         room2 = Room("1B")
         assert room1.check_out()
         assert room1.status == "Vacant"
-        with pytest.raises(RoomToBeVacant):
+        with pytest.raises(CheckOutException):
             room2.check_out()
 
     def test_clean(self):
@@ -149,7 +159,7 @@ class TestRoom:
         room2 = Room("1B")
         assert room1.clean()
         assert room1.status == "Available"
-        with pytest.raises(RoomToBeAvailable):
+        with pytest.raises(CleanException):
             room2.clean()
 
     def test_repair(self):
@@ -157,7 +167,7 @@ class TestRoom:
         room2 = Room("1B")
         assert room1.repair()
         assert room1.status == "Repair"
-        with pytest.raises(RoomToBeRepair):
+        with pytest.raises(RepairException):
             room2.repair()
 
     def test_repaired(self):
@@ -165,8 +175,28 @@ class TestRoom:
         room2 = Room("1B")
         assert room1.repaired()
         assert room1.status == "Vacant"
-        with pytest.raises(RoomToBeVacant):
+        with pytest.raises(RepairedException):
             room2.repaired()
+
+    def test_repair_can_only_be_vacant(self):
+        room = Room("1A", "Repair")
+        with pytest.raises(CheckInException):
+            room.check_in()
+        with pytest.raises(CheckOutException):
+            room.check_out()
+        with pytest.raises(CleanException):
+            room.clean()
+        with pytest.raises(RepairException):
+            room.repair()
+        assert room.repaired()
+        assert room.status == "Vacant"
+
+    def test_avail_occupied_can_not_be_repaired(self):
+        room1 = Room("1A", "Available")
+        room2 = Room("1B", "Occupied")
+        with pytest.raises(RepairException):
+            room1.repair()
+            room2.repair()
 
 
 class TestVirusMap:
@@ -199,3 +229,9 @@ class TestVirusMap:
         n = 5
         matrix = [[2, 0, 0, 2, 2], [0, 2, 2, 2, 2], [2, 0, 0, 2, 2]]
         assert VirusMap(m, n, matrix).solve() == "0"
+
+    def test_long_time(self):
+        m = 3
+        n = 5
+        matrix = [[1, 1, 1, 1, 1], [1, 0, 0, 0, 0], [1, 1, 1, 1, 2]]
+        assert VirusMap(m, n, matrix).solve() == "10"

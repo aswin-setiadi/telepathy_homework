@@ -11,8 +11,8 @@ def interactive_input():
         "Please key in hotel matrix (room is seperated by space, floor by new line, end matrix with # in new line):"
     )
     for line in iter(input, sentinel):
-        _ = line.split(" ")
-        matrix.append(_)
+        row = line.split(" ")
+        matrix.append([int(v) for v in row])
     m, n = [eval(i) for i in input1.split(" ")]
     print(VirusMap(m, n, matrix).solve())
 
@@ -26,4 +26,4 @@ def main_sample():
 
 if __name__ == "__main__":
     main_sample()
-    # interactive_main()
+    interactive_input()
