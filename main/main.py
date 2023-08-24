@@ -3,13 +3,14 @@ from typing import List, Tuple, Union
 
 
 from main.exceptions import (
+    CheckInException,
+    CheckOutException,
+    CleanException,
     FloorCountException,
+    RepairException,
+    RepairedException,
     RoomCountException,
     RoomStatusException,
-    RoomToBeAvailable,
-    RoomToBeOccupied,
-    RoomToBeRepair,
-    RoomToBeVacant,
 )
 from main.global_vars import DEBUGGING, ROOM_STATUSES, HOTEL_COLUMNS
 
@@ -95,31 +96,31 @@ class Room:
 
     def check_in(self) -> bool:
         if self._status != ROOM_STATUSES[0]:
-            raise RoomToBeOccupied()
+            raise CheckInException()
         self._status = ROOM_STATUSES[1]
         return True
 
     def check_out(self) -> bool:
         if self._status != ROOM_STATUSES[1]:
-            raise RoomToBeVacant()
+            raise CheckOutException()
         self._status = ROOM_STATUSES[2]
         return True
 
     def clean(self) -> bool:
         if self._status != ROOM_STATUSES[2]:
-            raise RoomToBeAvailable()
+            raise CleanException()
         self._status = ROOM_STATUSES[0]
         return True
 
     def repair(self) -> bool:
         if self._status != ROOM_STATUSES[2]:
-            raise RoomToBeRepair()
+            raise RepairException()
         self._status = ROOM_STATUSES[3]
         return True
 
     def repaired(self) -> bool:
         if self._status != ROOM_STATUSES[3]:
-            raise RoomToBeVacant()
+            raise RepairedException()
         self._status = ROOM_STATUSES[2]
         return True
 

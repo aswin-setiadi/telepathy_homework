@@ -23,29 +23,36 @@ class FloorCountException(Exception):
             super().__init__(f"Floor count must be int and minimum floor count is 1")
 
 
-class RoomToBeOccupied(Exception):
+class CheckInException(Exception):
     def __init__(self) -> None:
         super().__init__(
             f"Room status must be {ROOM_STATUSES[0]} to be {ROOM_STATUSES[1]}"
         )
 
 
-class RoomToBeVacant(Exception):
+class CheckOutException(Exception):
     def __init__(self) -> None:
         super().__init__(
-            f"Room status must be {ROOM_STATUSES[1]}/ {ROOM_STATUSES[3]} to be {ROOM_STATUSES[2]}"
+            f"Room status must be {ROOM_STATUSES[1]} to be {ROOM_STATUSES[2]}"
         )
 
 
-class RoomToBeAvailable(Exception):
+class CleanException(Exception):
     def __init__(self) -> None:
         super().__init__(
             f"Room status must be {ROOM_STATUSES[2]} to be {ROOM_STATUSES[0]}"
         )
 
 
-class RoomToBeRepair(Exception):
+class RepairException(Exception):
     def __init__(self) -> None:
         super().__init__(
             f"Room status must be {ROOM_STATUSES[2]} to be {ROOM_STATUSES[3]}"
+        )
+
+
+class RepairedException(Exception):
+    def __init__(self) -> None:
+        super().__init__(
+            f"Room status must be {ROOM_STATUSES[3]} to be {ROOM_STATUSES[2]}"
         )
