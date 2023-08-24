@@ -1,0 +1,115 @@
+<mxfile host="app.diagrams.net" modified="2023-08-24T00:58:02.935Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="11Vid9K7fLWKdhYPjSe5" version="21.6.9" type="device">
+  <diagram name="Page-1" id="fLC5gNEfovyBax3NuQ09">
+    <mxGraphModel dx="1434" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-1" value="brand:&lt;br&gt;Michelin" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="120" y="120" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-3" value="T40" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="130" y="90" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-5" value="brand:&lt;br&gt;Peugeot" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-7" value="can_be_fixed_on&lt;br&gt;durability: average" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-25;" vertex="1" parent="1">
+          <mxGeometry x="210" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-10" value="306" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="10" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-11" value="can_be_fixed_on&lt;br&gt;durability: optimal" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=30;" vertex="1" parent="1">
+          <mxGeometry x="230" y="180" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-12" value="brand:&lt;br&gt;Toyota" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="360" y="220" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-13" value="Supra" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="fAcx_sOMQ3o1fbbFm54X-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="190" as="sourcePoint" />
+            <mxPoint x="360" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-15" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1.013;exitY=0.663;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="fAcx_sOMQ3o1fbbFm54X-1" target="fAcx_sOMQ3o1fbbFm54X-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="260" as="sourcePoint" />
+            <mxPoint x="280" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-16" value="1st Graph" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-17" value="2nd Graph" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="10" y="320" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-18" value="TireProducer&lt;br&gt;name: Michelin" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="40" y="430" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-20" value="produce" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="450" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-21" value="Tire&lt;br&gt;name: T40" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="230" y="430" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-22" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="fAcx_sOMQ3o1fbbFm54X-18" target="fAcx_sOMQ3o1fbbFm54X-21">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="510" as="sourcePoint" />
+            <mxPoint x="230" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-23" value="Car&lt;br&gt;name: 306" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="440" y="350" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-24" value="Car&lt;br&gt;name: Supra" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="440" y="520" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-25" value="CarProducer&lt;br&gt;name: Peugeot" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="620" y="350" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-26" value="CarProducer&lt;br&gt;name: Toyota" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="620" y="520" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-27" value="can_be_fixed_on&lt;br&gt;durability: average" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-25;" vertex="1" parent="1">
+          <mxGeometry x="305" y="400" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-28" value="can_be_fixed_on&lt;br&gt;durability: optimal" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=30;" vertex="1" parent="1">
+          <mxGeometry x="320" y="490" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-29" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.011;entryY=0.578;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.989;exitY=0.367;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="fAcx_sOMQ3o1fbbFm54X-21" target="fAcx_sOMQ3o1fbbFm54X-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="360" y="470" as="sourcePoint" />
+            <mxPoint x="410" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-30" value="" style="endArrow=classic;html=1;rounded=0;entryX=-0.044;entryY=0.411;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.744;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="fAcx_sOMQ3o1fbbFm54X-21" target="fAcx_sOMQ3o1fbbFm54X-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="600" as="sourcePoint" />
+            <mxPoint x="380" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-31" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fAcx_sOMQ3o1fbbFm54X-25" target="fAcx_sOMQ3o1fbbFm54X-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="550" y="410" as="sourcePoint" />
+            <mxPoint x="600" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-32" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fAcx_sOMQ3o1fbbFm54X-26" target="fAcx_sOMQ3o1fbbFm54X-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="550" y="590" as="sourcePoint" />
+            <mxPoint x="590" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-33" value="produce" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="550" y="370" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fAcx_sOMQ3o1fbbFm54X-34" value="produce" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="550" y="540" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
