@@ -14,7 +14,7 @@
 - Even floor E -> A
 - Guest x+1 can checkout earlier than guest x
 - There are maximum of 5 rooms in each floor
-- When there is no available room to assign, app. will return None
+- When there is no available room to assign, application will return None
 
 
 ### How to Run
