@@ -20,6 +20,67 @@ else:
     logging.basicConfig(level=logging.INFO)
 
 
+class Room:
+    """
+    Room class.
+
+    Parameters:
+
+        number <str>: room number, format is {i}{j} where i is floor number and j is room column (A-E).
+
+        status <str>: room status, acceptable values are "Available", "Occupied", "Vacant", "Repair".
+    """
+
+    def __init__(self, number: str, status: str = ROOM_STATUSES[0]) -> None:
+        if status not in ROOM_STATUSES:
+            raise RoomStatusException(status=status)
+        self._number = number
+        self._status = status
+
+    @property
+    def number(self) -> str:
+        return self._number
+
+    @property
+    def status(self) -> str:
+        return self._status
+
+    def check_in(self) -> bool:
+        """Set room status from Available to Occupied, returns True if success."""
+        if self._status != ROOM_STATUSES[0]:
+            raise CheckInException()
+        self._status = ROOM_STATUSES[1]
+        return True
+
+    def check_out(self) -> bool:
+        """Set room status from Occupied to Vacant, returns True if success."""
+        if self._status != ROOM_STATUSES[1]:
+            raise CheckOutException()
+        self._status = ROOM_STATUSES[2]
+        return True
+
+    def clean(self) -> bool:
+        """Set room status from Vacant to Available, returns True if success."""
+        if self._status != ROOM_STATUSES[2]:
+            raise CleanException()
+        self._status = ROOM_STATUSES[0]
+        return True
+
+    def repair(self) -> bool:
+        """Set room status from Vacant to Repair, returns True if success."""
+        if self._status != ROOM_STATUSES[2]:
+            raise RepairException()
+        self._status = ROOM_STATUSES[3]
+        return True
+
+    def repaired(self) -> bool:
+        """Set room status from Repair to Vacant, returns True if success."""
+        if self._status != ROOM_STATUSES[3]:
+            raise RepairedException()
+        self._status = ROOM_STATUSES[2]
+        return True
+
+
 class Hotel:
     """
     Hotel class that represents the hotel system. There must be always 5 rooms for each floor.
@@ -83,67 +144,6 @@ class Hotel:
                     if j.status == ROOM_STATUSES[0]:
                         avail_rooms.append(j.number)
         return avail_rooms
-
-
-class Room:
-    """
-    Room class.
-
-    Parameters:
-
-        number <str>: room number, format is {i}{j} where i is floor number and j is room column (A-E).
-
-        status <str>: room status, acceptable values are "Available", "Occupied", "Vacant", "Repair".
-    """
-
-    def __init__(self, number: str, status: str = ROOM_STATUSES[0]) -> None:
-        if status not in ROOM_STATUSES:
-            raise RoomStatusException(status=status)
-        self._number = number
-        self._status = status
-
-    @property
-    def number(self) -> str:
-        return self._number
-
-    @property
-    def status(self) -> str:
-        return self._status
-
-    def check_in(self) -> bool:
-        """Set room status from Available to Occupied, returns True if success."""
-        if self._status != ROOM_STATUSES[0]:
-            raise CheckInException()
-        self._status = ROOM_STATUSES[1]
-        return True
-
-    def check_out(self) -> bool:
-        """Set room status from Occupied to Vacant, returns True if success."""
-        if self._status != ROOM_STATUSES[1]:
-            raise CheckOutException()
-        self._status = ROOM_STATUSES[2]
-        return True
-
-    def clean(self) -> bool:
-        """Set room status from Vacant to Available, returns True if success."""
-        if self._status != ROOM_STATUSES[2]:
-            raise CleanException()
-        self._status = ROOM_STATUSES[0]
-        return True
-
-    def repair(self) -> bool:
-        """Set room status from Vacant to Repair, returns True if success."""
-        if self._status != ROOM_STATUSES[2]:
-            raise RepairException()
-        self._status = ROOM_STATUSES[3]
-        return True
-
-    def repaired(self) -> bool:
-        """Set room status from Repair to Vacant, returns True if success."""
-        if self._status != ROOM_STATUSES[3]:
-            raise RepairedException()
-        self._status = ROOM_STATUSES[2]
-        return True
 
 
 class VirusMap:
