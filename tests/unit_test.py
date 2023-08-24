@@ -120,6 +120,15 @@ class TestHotel:
         assert hotel.list_available_rooms() == expected_list
         assert hotel2.list_available_rooms() == expected_list[1:]
 
+    def test_get_room(self):
+        hotel = Hotel(110)
+        nums = ["1", "01", "11", "111", "A", "AA", "1AA", "10F", "10AA", "111E"]
+        for num in nums:
+            assert hotel.get_room(num) is None
+        assert isinstance(hotel.get_room("1A"), Room)
+        assert isinstance(hotel.get_room("02B"), Room)
+        assert isinstance(hotel.get_room("110E"), Room)
+
 
 class TestRoom:
     def test_room_creation(self):

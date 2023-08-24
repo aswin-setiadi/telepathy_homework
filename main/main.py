@@ -1,4 +1,5 @@
 import logging
+import re
 from typing import List, Tuple, Union
 
 
@@ -26,7 +27,7 @@ class Room:
 
     Parameters:
 
-        number <str>: room number, format is {i}{j} where i is floor number and j is room column (A-E).
+        number <str>: room number, format is {i}{j} where i is floor number (1-M) and j is room column (A-E).
 
         status <str>: room status, acceptable values are "Available", "Occupied", "Vacant", "Repair".
     """
@@ -144,6 +145,29 @@ class Hotel:
                     if j.status == ROOM_STATUSES[0]:
                         avail_rooms.append(j.number)
         return avail_rooms
+
+    def get_room(self, num: str) -> Union[Room, None]:
+        """Retrieve Room object given the room number.
+
+        Parameters:
+            num <int> : room number, format is {i}{j} where i is floor number (1-M) and j is room column (A-E).
+        """
+        result = re.search(r"^(\d+)([ABCDE]+)$", num)
+        if not result:
+            logging.error(
+                f"Invalid num value {num}. Format is (i)(j) where i is floor number (1-{self.floor_count}) and j is room column (A-E)."
+            )
+            return None
+        # group(0) will be the whole match as it is a group itself
+        row = int(result.group(1))
+        col = result.group(2)
+        if row < 1 or row > len(self._rooms):
+            logging.error(f"floor must be 1-{len(self._rooms)}, received {row}.")
+            return None
+        if col not in HOTEL_COLUMNS:
+            logging.error(f"room column must be in {HOTEL_COLUMNS}, received {col}.")
+            return None
+        return self._rooms[row - 1][HOTEL_COLUMNS.index(col)]
 
 
 class VirusMap:
