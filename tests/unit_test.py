@@ -10,7 +10,7 @@ from main.exceptions import (
     RoomStatusException,
 )
 
-from main.main import Hotel, Room, VirusMap
+from main.main import Hotel, Room, VirusMap, VirusMapBfs
 
 
 class TestHotel:
@@ -235,3 +235,41 @@ class TestVirusMap:
         n = 5
         matrix = [[1, 1, 1, 1, 1], [1, 0, 0, 0, 0], [1, 1, 1, 1, 2]]
         assert VirusMap(m, n, matrix).solve() == "10"
+
+
+class TestVirusMapBfs:
+    def test_sample_question(self):
+        m = 3
+        n = 5
+        matrix = [[2, 1, 0, 2, 1], [1, 1, 1, 1, 1], [1, 0, 0, 2, 1]]
+        assert VirusMapBfs(m, n, matrix).solve() == "2"
+
+    def test_no_infected(self):
+        m = 3
+        n = 5
+        matrix = [[1, 1, 0, 1, 1], [1, 1, 1, 1, 1], [1, 0, 0, 1, 1]]
+        assert VirusMapBfs(m, n, matrix).solve() == "-1"
+
+    def test_isolated_infected(self):
+        m = 3
+        n = 5
+        matrix = [[2, 0, 0, 1, 1], [0, 1, 1, 1, 1], [1, 0, 0, 1, 1]]
+        assert VirusMapBfs(m, n, matrix).solve() == "-1"
+
+    def test_isolated_uninfected(self):
+        m = 3
+        n = 5
+        matrix = [[1, 0, 0, 2, 1], [0, 1, 1, 1, 1], [1, 0, 0, 2, 1]]
+        assert VirusMapBfs(m, n, matrix).solve() == "-1"
+
+    def test_all_infected(self):
+        m = 3
+        n = 5
+        matrix = [[2, 0, 0, 2, 2], [0, 2, 2, 2, 2], [2, 0, 0, 2, 2]]
+        assert VirusMapBfs(m, n, matrix).solve() == "0"
+
+    def test_long_time(self):
+        m = 3
+        n = 5
+        matrix = [[1, 1, 1, 1, 1], [1, 0, 0, 0, 0], [1, 1, 1, 1, 2]]
+        assert VirusMapBfs(m, n, matrix).solve() == "10"
