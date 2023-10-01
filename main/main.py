@@ -232,3 +232,76 @@ class VirusMap:
         if col != self.n - 1:
             neighbours.append((row, col + 1))
         return neighbours
+
+
+class VirusMapBfs:
+    def __init__(self, m: int, n: int, matrix: List[List[int]]) -> None:
+        self.m = m
+        self.n = n
+        self.matrix = matrix
+        self.unit_time = 0
+        self.healthy_guests: set[Tuple[int, int]] = set()
+        self.infection_list_today: List[Tuple[int, int]] = []
+        self.infection_list_tmr: List[Tuple[int, int]] = []
+
+    def solve(self) -> str:
+        """
+        pseudo code:
+        - find all the infected person, add them to infection_today
+        - find all the healthy_guests, add them to healthy_guests set
+        - if infection_today empty, if healthy_guests empty return 0 else return 1
+        - loop infected room:
+            - if the neighbour is healthy, add to visited list, add to infection_tmr
+        - loop infection_tmr, change their status to 2/ infected and remove the room from healthy_guests
+        - if infection_tmr not empty, unit_time+1, infection_today= infection_tmr, infection_tmr=[]
+        - else if healthy_guests not empty, return -1, else: return unit_time
+        """
+
+        def _get_neighbours(coord: Tuple[int, int]) -> List[Tuple[int, int]]:
+            row = coord[0]
+            col = coord[1]
+            neighbours: List[Tuple[int, int]] = []
+            if row != 0:
+                neighbours.append((row - 1, col))
+            if row != self.m - 1:
+                neighbours.append((row + 1, col))
+            if col != 0:
+                neighbours.append((row, col - 1))
+            if col != self.n - 1:
+                neighbours.append((row, col + 1))
+            return neighbours
+
+        for row in range(self.m):
+            for col in range(self.n):
+                if self.matrix[row][col] == 1:
+                    self.healthy_guests.add((row, col))
+                if self.matrix[row][col] == 2:
+                    self.infection_list_today.append((row, col))
+
+        if not self.infection_list_today:
+            if not self.healthy_guests:
+                return "0"
+            else:
+                return "-1"
+
+        while True:
+            visited_1: List[Tuple[int, int]] = []
+            for room_coord in self.infection_list_today:
+                neighbours = _get_neighbours(room_coord)
+                for n in neighbours:
+                    if self.matrix[n[0]][n[1]] == 1:
+                        if n not in visited_1:
+                            visited_1.append(n)
+                            self.infection_list_tmr.append(n)
+            for coord in self.infection_list_tmr:
+                self.matrix[coord[0]][coord[1]] = 2
+                self.healthy_guests.remove(coord)
+            if self.infection_list_tmr:
+                self.unit_time += 1
+                self.infection_list_today = self.infection_list_tmr
+                self.infection_list_tmr = []
+            else:
+                if len(self.healthy_guests):
+                    return "-1"
+                else:
+                    return str(self.unit_time)
